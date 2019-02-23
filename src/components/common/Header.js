@@ -1,7 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Header = ({ headerText }) => {
+export const Header = ({ headerText }) => {
   const { viewStyle, textStyle } = styles;
 
   return (
@@ -29,5 +30,3 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
-
-export default Header;

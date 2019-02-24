@@ -1,16 +1,67 @@
 import React from 'react';
+import firebase from 'firebase';
+import { Text } from 'react-native';
 import {
   Button,
   Card,
   CardSection,
-  Input
+  Input,
+  Spinner
 } from './common';
 
 class LoginForm extends React.Component {
-  state = { email: '', password: '' };
+  state = {
+    email: '',
+    password: '',
+    error: '',
+    loading: false
+  };
+
+  onButtonPress = () => {
+    const { email, password } = this.state;
+
+    this.setState({ error: '', loading: true });
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(this.onLoginSuccess.bind(this))
+      .catch(() => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(this.onLoginSuccess.bind(this))
+          .catch(() => {
+            this.onLoginFail();
+          });
+      });
+  }
+
+  onLoginFail = () => {
+    this.setState({ error: 'Authentication Failed.', loading: false });
+  }
+
+  onLoginSuccess = () => {
+    this.setState({
+      error: '',
+      loading: false,
+      email: '',
+      password: ''
+    });
+  }
+
+  renderButton = () => {
+    const { loading } = this.state;
+
+    if (loading) {
+      return <Spinner size="small" />;
+    }
+    return (
+      <Button onPress={this.onButtonPress}>
+        Log In
+      </Button>
+    );
+  }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
+    const { errorTextStyle } = styles;
     return (
       <Card>
         <CardSection>
@@ -30,14 +81,23 @@ class LoginForm extends React.Component {
             secureTextEntry
           />
         </CardSection>
+        <Text styles={errorTextStyle}>
+          {error}
+        </Text>
         <CardSection>
-          <Button>
-            Log In
-          </Button>
+          {this.renderButton()}
         </CardSection>
       </Card>
     );
   }
 }
+
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
 
 export default LoginForm;

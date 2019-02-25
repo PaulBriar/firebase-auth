@@ -1,8 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Card = ({ children }) => {
+const Card = ({ children }) => {
   const { containerStyle } = styles;
 
   return (
@@ -28,3 +28,5 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
+
+export { Card };

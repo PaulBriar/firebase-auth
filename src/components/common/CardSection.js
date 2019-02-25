@@ -2,7 +2,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-export const CardSection = (props) => {
+const CardSection = (props) => {
   const { children } = props;
 
   return (
@@ -23,3 +23,5 @@ const styles = {
     position: 'relative',
   }
 };
+
+export { CardSection };

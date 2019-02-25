@@ -50,7 +50,7 @@ class LoginForm extends React.Component {
     const { loading } = this.state;
 
     if (loading) {
-      return <Spinner size="small" />;
+      return <Spinner size="large" />;
     }
     return (
       <Button onPress={this.onButtonPress}>
@@ -61,7 +61,6 @@ class LoginForm extends React.Component {
 
   render() {
     const { email, password, error } = this.state;
-    const { errorTextStyle } = styles;
     return (
       <Card>
         <CardSection>
@@ -81,7 +80,7 @@ class LoginForm extends React.Component {
             secureTextEntry
           />
         </CardSection>
-        <Text styles={errorTextStyle}>
+        <Text style={styles.errorTextStyle}>
           {error}
         </Text>
         <CardSection>

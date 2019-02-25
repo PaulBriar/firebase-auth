@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const Header = ({ headerText }) => {
+const Header = ({ headerText }) => {
   const { viewStyle, textStyle } = styles;
 
   return (
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   }
 });
+
+export { Header };

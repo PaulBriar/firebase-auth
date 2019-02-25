@@ -1,14 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
-// eslint-disable-next-line import/prefer-default-export
-export const Spinner = ({ size }) => {
-  return (
-    <View styles={styles.spinnerStyle}>
-      <ActivityIndicator size={size || 'large'} />
-    </View>
-  );
-};
+const Spinner = ({ size }) => (
+  <View style={styles.spinnerStyle}>
+    <ActivityIndicator size={size || 'large'} />
+  </View>
+);
 
 const styles = {
   spinnerStyle: {
@@ -17,3 +15,5 @@ const styles = {
     alignItems: 'center',
   }
 };
+
+export { Spinner };

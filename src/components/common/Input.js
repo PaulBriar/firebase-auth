@@ -2,7 +2,13 @@ import React from 'react';
 import { TextInput, View, Text } from 'react-native';
 
 // eslint-disable-next-line import/prefer-default-export
-export const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => {
+export const Input = ({
+  label,
+  value,
+  onChangeText,
+  placeholder,
+  secureTextEntry
+}) => {
   const { inputStyle, labelStyle, containerStyle } = styles;
 
   return (
